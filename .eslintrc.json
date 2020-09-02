@@ -1,0 +1,8 @@
+{
+  "extends": ["react-app", "plugin:jsx-a11y/recommended"],
+  "plugins": ["jsx-a11y", "prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "react/jsx-curly-brace-presence": "error"
+  }
+}
