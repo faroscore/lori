@@ -3,23 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^5.6.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "final-form": "^4.20.1",
     "json-server": "^0.16.1",
+    "moment": "^2.27.0",
     "normalizr": "^3.6.0",
     "react": "^16.13.1",
+    "react-datepicker": "^3.1.3",
     "react-dom": "^16.13.1",
+    "react-final-form": "^6.5.1",
     "react-redux": "^7.2.1",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
     "redux-act": "^1.8.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "server": "json-server --watch db/index.js --port 8080"
   },
@@ -40,6 +46,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "craco-stylus": "^1.0.0",
     "eslint": "^7.8.1",
     "eslint-config-react-app": "^5.2.1",
     "eslint-plugin-flowtype": "^5.2.0",
@@ -51,7 +58,9 @@
     "flow-bin": "^0.133.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.13",
-    "prettier": "^2.1.1"
+    "prettier": "^2.1.1",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^3.0.2"
   },
   "husky": {
     "hooks": {

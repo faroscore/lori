@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchBooks } from "../../store/modules/books";
 import type { MapState } from "../../store/types";
 import type { BooksState } from "../../store/types/books";
+import Book from "../Book";
 
 type OwnProps = {};
 
@@ -22,11 +23,27 @@ const BooksList = ({ books, ...dispatchProps }: Props) => {
       dispatchProps.fetchBooks();
     }
   }, []);
-  if (books.running) return "Loading...";
-  if (books.error) return books.error;
-  return books.books.map((bookId) => (
-    <p key={bookId}>{books.book[bookId].title}</p>
-  ));
+  return (
+    <section className="container">
+      {books.running ? (
+        <h3>Loading...</h3>
+      ) : (
+        <Fragment>
+          {books.error ? (
+            <h3>{books.error}</h3>
+          ) : (
+            <div className="row">
+              {books.books.map((bookId) => (
+                <div className="col-sm-3 mb-3" key={bookId}>
+                  <Book bookId={bookId} />
+                </div>
+              ))}
+            </div>
+          )}
+        </Fragment>
+      )}
+    </section>
+  );
 };
 
 const mapState: MapState<OwnProps, StateProps> = ({ books }) => ({ books });

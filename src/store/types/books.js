@@ -10,6 +10,7 @@ export type Book = {
   id: number,
   title: string,
   type: BookType,
+  img: string,
 };
 
 export type BooksState = {
