@@ -17,36 +17,36 @@ it("price generator", () => {
   expect(
     getBookPrice(null, {
       bookId: null,
-      from: "03/09/2020",
-      until: "04/09/2020",
+      from: "2020-09-03",
+      until: "2020-09-04",
     })
   ).toEqual(0);
   expect(
     getBookPrice(null, {
       bookId: null,
       from: null,
-      until: "04/09/2020",
+      until: "2020-09-04",
     })
   ).toEqual(0);
   expect(
     getBookPrice(null, {
       bookId: null,
-      from: "03/09/2020",
+      from: "2020-09-03",
       until: null,
     })
   ).toEqual(0);
   expect(
     getBookPrice(null, {
       bookId: null,
-      from: "03/09/2020",
-      until: "03/09/2020",
+      from: "2020-09-03",
+      until: "2020-09-03",
     })
   ).toEqual(0);
   expect(
     getBookPrice(null, {
       bookId: null,
-      from: "03/09/2020",
-      until: "02/09/2020",
+      from: "2020-09-03",
+      until: "2020-09-02",
     })
   ).toEqual(0);
   expect(
@@ -59,8 +59,8 @@ it("price generator", () => {
       },
       {
         bookId: 1,
-        from: new Date(),
-        until: new Date(new Date().valueOf() + dayInMs),
+        from: "2020-09-03",
+        until: "2020-09-04",
       }
     )
   ).toEqual(1);
@@ -74,9 +74,24 @@ it("price generator", () => {
       },
       {
         bookId: 1,
-        from: new Date(),
-        until: new Date(new Date().valueOf() + dayInMs * 7),
+        from: "2020-09-03",
+        until: "2020-09-10",
       }
     )
   ).toEqual(7);
+  expect(
+    getBookPrice(
+      {
+        id: 1,
+        title: "Test book",
+        url: "",
+        type: 1,
+      },
+      {
+        bookId: 1,
+        from: "2020-09-03",
+        until: "2020-09-12",
+      }
+    )
+  ).toEqual(9);
 });

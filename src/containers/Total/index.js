@@ -13,7 +13,7 @@ type StateProps = {
 
 type Props = OwnProps & StateProps;
 
-const BooksList = ({ total }: Props) =>
+const Total = ({ total }: Props) =>
   !!total && (
     <section className="container">
       <h4>Total: {total}$</h4>
@@ -31,4 +31,4 @@ const mapState: MapState<OwnProps, StateProps> = (state) => {
   };
 };
 
-export default connect(mapState)(BooksList);
+export default connect(mapState)(Total);

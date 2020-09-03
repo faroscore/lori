@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchBooks } from "../../store/modules/books";
+import { fetchBooks, fetchTypes } from "../../store/modules/books";
 import type { MapState } from "../../store/types";
 import type { BooksState } from "../../store/types/books";
 import Book from "../Book";
@@ -13,6 +13,7 @@ type StateProps = {
 
 type DispatchProps = {
   fetchBooks: () => void,
+  fetchTypes: () => void,
 };
 
 type Props = OwnProps & StateProps & DispatchProps;
@@ -21,6 +22,9 @@ const BooksList = ({ books, ...dispatchProps }: Props) => {
   useEffect(() => {
     if (!books.books.length) {
       dispatchProps.fetchBooks();
+    }
+    if (!Object.keys(books.type).length) {
+      dispatchProps.fetchTypes();
     }
   }, []);
   return (
@@ -47,6 +51,6 @@ const BooksList = ({ books, ...dispatchProps }: Props) => {
 };
 
 const mapState: MapState<OwnProps, StateProps> = ({ books }) => ({ books });
-const mapDispatch: DispatchProps = { fetchBooks };
+const mapDispatch: DispatchProps = { fetchBooks, fetchTypes };
 
 export default connect(mapState, mapDispatch)(BooksList);
