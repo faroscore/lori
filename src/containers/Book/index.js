@@ -10,6 +10,7 @@ import {
 } from "../../store/selectors/books";
 import { selectRentDataById } from "../../store/selectors/cart";
 import { addToCart, removeFromCart } from "../../store/modules/cart";
+import { dateFormat } from "../../utils/formats";
 import BookComponent from "../../components/Book";
 import type { MapState } from "../../store/types";
 import type { Book, BookType } from "../../store/types/books";
@@ -41,8 +42,8 @@ const BookContainer = ({
     const today = moment();
     dispatchProps.addToCart({
       bookId,
-      from: today.toDate(),
-      until: today.add(1, "day").toDate(),
+      from: today.format(dateFormat),
+      until: today.add(1, "day").format(dateFormat),
     });
   }, [bookId]);
 

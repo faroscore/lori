@@ -2,8 +2,8 @@
 
 export type RentData = {
   bookId: number,
-  from: Date,
-  until: Date,
+  from: string,
+  until: string,
 };
 
 export type CartState = {
