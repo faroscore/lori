@@ -21,11 +21,13 @@ export default ({ name, label, minDate, onChange }: Props) => (
         {label}
         <DatePicker
           selected={new Date(input.value)}
-          onChange={(date: Date) => {
-            const formatted = moment(date).format(dateFormat);
-            input.onChange(formatted);
-            if (typeof onChange === "function") {
-              onChange(formatted);
+          onChange={(date: ?Date) => {
+            if (date) {
+              const formatted = moment(date).format(dateFormat);
+              input.onChange(formatted);
+              if (typeof onChange === "function") {
+                onChange(formatted);
+              }
             }
           }}
           className="form-control"
