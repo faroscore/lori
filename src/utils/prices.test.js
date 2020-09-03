@@ -58,7 +58,23 @@ it("price generator for regular type", () => {
       from: "2020-09-03",
       until: "2020-09-04",
     })
-  ).toEqual(1.5);
+  ).toEqual(2);
+
+  expect(
+    getBookPrice(REGULAR_TYPE, {
+      bookId: 1,
+      from: "2020-09-03",
+      until: "2020-09-05",
+    })
+  ).toEqual(2);
+
+  expect(
+    getBookPrice(REGULAR_TYPE, {
+      bookId: 1,
+      from: "2020-09-03",
+      until: "2020-09-06",
+    })
+  ).toEqual(3.5);
 
   expect(
     getBookPrice(REGULAR_TYPE, {
@@ -66,7 +82,7 @@ it("price generator for regular type", () => {
       from: "2020-09-03",
       until: "2020-09-10",
     })
-  ).toEqual(10.5);
+  ).toEqual(9.5);
 
   expect(
     getBookPrice(REGULAR_TYPE, {
@@ -74,7 +90,7 @@ it("price generator for regular type", () => {
       from: "2020-09-03",
       until: "2020-09-12",
     })
-  ).toEqual(13.5);
+  ).toEqual(12.5);
 });
 
 it("price generator for fiction type", () => {
@@ -110,7 +126,31 @@ it("price generator for novel type", () => {
       from: "2020-09-03",
       until: "2020-09-04",
     })
-  ).toEqual(1.5);
+  ).toEqual(4.5);
+
+  expect(
+    getBookPrice(NOVEL_TYPE, {
+      bookId: 1,
+      from: "2020-09-03",
+      until: "2020-09-05",
+    })
+  ).toEqual(4.5);
+
+  expect(
+    getBookPrice(NOVEL_TYPE, {
+      bookId: 1,
+      from: "2020-09-03",
+      until: "2020-09-06",
+    })
+  ).toEqual(4.5);
+
+  expect(
+    getBookPrice(NOVEL_TYPE, {
+      bookId: 1,
+      from: "2020-09-03",
+      until: "2020-09-07",
+    })
+  ).toEqual(6);
 
   expect(
     getBookPrice(NOVEL_TYPE, {
