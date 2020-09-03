@@ -5,9 +5,11 @@ import moment from "moment";
 import { Form } from "react-final-form";
 import Datepicker from "../Datepicker";
 import type { RentData } from "../../store/types/cart";
+import type { Book, BookType } from "../../store/types/books";
 
 type Props = {
   book: Book,
+  type?: BookType,
   onAddClick: () => void,
   onRemoveClick: () => void,
   rentData?: RentData,
@@ -16,6 +18,7 @@ type Props = {
 
 export default ({
   book,
+  type,
   rentData,
   onAddClick,
   onRemoveClick,
@@ -25,6 +28,7 @@ export default ({
     <div className="card-body">
       <img className="card-img-top" src={book.img} alt={book.title} />
       <h5 className="card-title">{book.title}</h5>
+      {type && <h6 className="card-subtitle mb-2 text-muted">{type.name}</h6>}
       {rentData ? (
         <Fragment>
           <Form

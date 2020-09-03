@@ -8,11 +8,17 @@ const fetchBooksStart = createAction("BOOKS/START/fetch books");
 const fetchBooksSuccess = createAction("BOOKS/SUCCESS/fetch books");
 const fetchBooksFail = createAction("BOOKS/FAIL/fetch books");
 
+const fetchTypesStart = createAction("BOOKS/START/fetch types");
+const fetchTypesSuccess = createAction("BOOKS/SUCCESS/fetch types");
+const fetchTypesFail = createAction("BOOKS/FAIL/fetch types");
+
 const bookEntity = new schema.Entity("book");
+const typeEntity = new schema.Entity("type");
 
 const defaultState: BooksState = {
   books: [],
   book: {},
+  type: {},
   running: false,
   error: null,
 };
@@ -43,6 +49,29 @@ export default createReducer(
       running: false,
       error: payload,
     }),
+
+    [fetchTypesStart.toString()]: (state) => ({
+      ...state,
+      running: true,
+      error: null,
+    }),
+
+    [fetchTypesSuccess.toString()]: (state, payload) => {
+      const {
+        entities: { type },
+      } = normalize(payload, [typeEntity]);
+      return {
+        ...state,
+        running: false,
+        type,
+      };
+    },
+
+    [fetchTypesFail.toString()]: (state, payload) => ({
+      ...state,
+      running: false,
+      error: payload,
+    }),
   },
   defaultState
 );
@@ -56,5 +85,17 @@ export const fetchBooks = () => (dispatch) => {
     })
     .catch((e) => {
       dispatch(fetchBooksFail(e.message));
+    });
+};
+
+export const fetchTypes = () => (dispatch) => {
+  dispatch(fetchTypesStart());
+  fetch(`${process.env.REACT_APP_API_URL}/types`)
+    .then((res) => res.json())
+    .then((json) => {
+      dispatch(fetchTypesSuccess(json));
+    })
+    .catch((e) => {
+      dispatch(fetchTypesFail(e.message));
     });
 };
