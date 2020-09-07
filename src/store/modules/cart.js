@@ -9,7 +9,7 @@ export const addToCart: AddToCart = createAction("CART/add");
 export type RemoveFromCart = ActionCreator<number>;
 export const removeFromCart: RemoveFromCart = createAction("CART/remove");
 
-const defaultState: CartState = {
+export const defaultState: CartState = {
   cart: {},
 };
 

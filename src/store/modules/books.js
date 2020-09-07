@@ -4,18 +4,18 @@ import { createAction, createReducer } from "redux-act";
 import { normalize, schema } from "normalizr";
 import type { BooksState } from "../types/books";
 
-const fetchBooksStart = createAction("BOOKS/START/fetch books");
-const fetchBooksSuccess = createAction("BOOKS/SUCCESS/fetch books");
-const fetchBooksFail = createAction("BOOKS/FAIL/fetch books");
+export const fetchBooksStart = createAction("BOOKS/START/fetch books");
+export const fetchBooksSuccess = createAction("BOOKS/SUCCESS/fetch books");
+export const fetchBooksFail = createAction("BOOKS/FAIL/fetch books");
 
-const fetchTypesStart = createAction("BOOKS/START/fetch types");
-const fetchTypesSuccess = createAction("BOOKS/SUCCESS/fetch types");
-const fetchTypesFail = createAction("BOOKS/FAIL/fetch types");
+export const fetchTypesStart = createAction("BOOKS/START/fetch types");
+export const fetchTypesSuccess = createAction("BOOKS/SUCCESS/fetch types");
+export const fetchTypesFail = createAction("BOOKS/FAIL/fetch types");
 
 const bookEntity = new schema.Entity("book");
 const typeEntity = new schema.Entity("type");
 
-const defaultState: BooksState = {
+export const defaultState: BooksState = {
   books: [],
   book: {},
   type: {},
